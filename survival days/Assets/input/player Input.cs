@@ -37,13 +37,22 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""jump"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""73254804-cdb8-4bc8-a04b-a8009453ce41"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""look "",
+                    ""type"": ""Value"",
+                    ""id"": ""e98361b8-14f0-4a44-9e6d-1af602bdf31c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -164,7 +173,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""jump"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -175,7 +184,29 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""jump"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""911668d7-1fbc-4237-a10c-8d8133368dc5"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""look "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""485db7b6-03bc-4dc9-87ad-22277069e8db"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""look "",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -187,7 +218,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // onfoot
         m_onfoot = asset.FindActionMap("onfoot", throwIfNotFound: true);
         m_onfoot_movment = m_onfoot.FindAction("movment", throwIfNotFound: true);
-        m_onfoot_jump = m_onfoot.FindAction("jump", throwIfNotFound: true);
+        m_onfoot_Jump = m_onfoot.FindAction("Jump", throwIfNotFound: true);
+        m_onfoot_look = m_onfoot.FindAction("look ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -248,13 +280,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_onfoot;
     private IOnfootActions m_OnfootActionsCallbackInterface;
     private readonly InputAction m_onfoot_movment;
-    private readonly InputAction m_onfoot_jump;
+    private readonly InputAction m_onfoot_Jump;
+    private readonly InputAction m_onfoot_look;
     public struct OnfootActions
     {
         private @PlayerInput m_Wrapper;
         public OnfootActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @movment => m_Wrapper.m_onfoot_movment;
-        public InputAction @jump => m_Wrapper.m_onfoot_jump;
+        public InputAction @Jump => m_Wrapper.m_onfoot_Jump;
+        public InputAction @look => m_Wrapper.m_onfoot_look;
         public InputActionMap Get() { return m_Wrapper.m_onfoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -267,9 +301,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @movment.started -= m_Wrapper.m_OnfootActionsCallbackInterface.OnMovment;
                 @movment.performed -= m_Wrapper.m_OnfootActionsCallbackInterface.OnMovment;
                 @movment.canceled -= m_Wrapper.m_OnfootActionsCallbackInterface.OnMovment;
-                @jump.started -= m_Wrapper.m_OnfootActionsCallbackInterface.OnJump;
-                @jump.performed -= m_Wrapper.m_OnfootActionsCallbackInterface.OnJump;
-                @jump.canceled -= m_Wrapper.m_OnfootActionsCallbackInterface.OnJump;
+                @Jump.started -= m_Wrapper.m_OnfootActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_OnfootActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_OnfootActionsCallbackInterface.OnJump;
+                @look.started -= m_Wrapper.m_OnfootActionsCallbackInterface.OnLook;
+                @look.performed -= m_Wrapper.m_OnfootActionsCallbackInterface.OnLook;
+                @look.canceled -= m_Wrapper.m_OnfootActionsCallbackInterface.OnLook;
             }
             m_Wrapper.m_OnfootActionsCallbackInterface = instance;
             if (instance != null)
@@ -277,9 +314,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @movment.started += instance.OnMovment;
                 @movment.performed += instance.OnMovment;
                 @movment.canceled += instance.OnMovment;
-                @jump.started += instance.OnJump;
-                @jump.performed += instance.OnJump;
-                @jump.canceled += instance.OnJump;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @look.started += instance.OnLook;
+                @look.performed += instance.OnLook;
+                @look.canceled += instance.OnLook;
             }
         }
     }
@@ -288,5 +328,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMovment(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
     }
 }

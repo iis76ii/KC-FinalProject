@@ -15,13 +15,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "jump",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "73254804-cdb8-4bc8-a04b-a8009453ce41",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "look ",
+                    "type": "Value",
+                    "id": "e98361b8-14f0-4a44-9e6d-1af602bdf31c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -142,7 +151,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "jump",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -153,7 +162,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "jump",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "911668d7-1fbc-4237-a10c-8d8133368dc5",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "look ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "485db7b6-03bc-4dc9-87ad-22277069e8db",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "look ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
