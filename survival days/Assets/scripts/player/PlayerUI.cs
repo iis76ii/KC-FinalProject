@@ -12,7 +12,7 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     public void updatetexet(string promptMessage)

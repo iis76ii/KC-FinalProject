@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerhealth : MonoBehaviour
+public class playerHealth : MonoBehaviour
 {
     private float health;
     private float lerpTimer;
     public float maxhealth = 100f;
-    public float chipspeed = 2f;
+    public float chipSpeed = 2f;
     public Image fronthealthbar;
     public Image backhealthbar;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,43 +23,10 @@ public class playerhealth : MonoBehaviour
     void Update()
     {
         health = Mathf.Clamp(health, 0, maxhealth);
-        updatehealthUI();
-
+        updatehealthui();
     }
-    public void updatehealthUI()
+    public void updatehealthui()
     {
         Debug.Log(health);
-        float fillf = fronthealthbar.fillAmount;
-        float fillb = backhealthbar.fillAmount;
-        float hFraction = health / maxhealth;
-        if (fillb > hFraction)
-        {
-            fronthealthbar.fillAmount = hFraction;
-            backhealthbar.color = Color.red;
-            lerpTimer = Time.deltaTime;
-            float presentComplete = lerpTimer / chipspeed;
-            presentComplete = presentComplete * presentComplete;
-            backhealthbar.fillAmount = Mathf.Lerp(fillb, hFraction, presentComplete);
-        }
-        if (fillf < hFraction)
-        {
-            backhealthbar.color = Color.green;
-            backhealthbar.fillAmount = hFraction;
-            lerpTimer = Time.deltaTime;
-            float presentComplete = lerpTimer / chipspeed;
-            presentComplete = presentComplete * presentComplete;
-            fronthealthbar.fillAmount = Mathf.Lerp(fillf, backhealthbar.fillAmount, presentComplete);
-        }
-    }
-
-    public void takedamage(float damage)
-    {
-        health -= damage;
-        lerpTimer = 0f;
-    }
-    public void restorhealth (float heal)
-    {
-        health += heal;
-        lerpTimer = 0f;
     }
 }
