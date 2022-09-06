@@ -12,7 +12,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.InputAction;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
 public partial class @PlayerInput : IInputActionCollection2, IDisposable
