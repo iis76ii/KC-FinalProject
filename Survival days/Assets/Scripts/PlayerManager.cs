@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerManager : MonoBehaviour {
-    public float health = 100;
+    public float health = 200;
     public TextMeshProUGUI healthNum;
     public GameManager gameManager;
     public GameObject playerCamera;

@@ -16,11 +16,11 @@ public class TouchPlayerMovement : MonoBehaviour {
     public float groundDistance = .4f;
     public LayerMask groundMask;
 
-    private int leftFingerID, rightFingerID;
+   
     private float halfScreenWidth;
-    void Start() {
-        leftFingerID = -1;
-        rightFingerID = -1;
+    void Start() 
+    {
+
         halfScreenWidth = Screen.width / 2;
     }
 
