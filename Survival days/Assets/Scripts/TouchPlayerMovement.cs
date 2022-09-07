@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TouchPlayerMovement : MonoBehaviour {
+public class TouchPlayerMovement : MonoBehaviour 
+{
 
     public CharacterController controller;
     public float speed = 12f;
@@ -29,7 +30,8 @@ public class TouchPlayerMovement : MonoBehaviour {
         GetTouchInput();
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0) {
+        if(isGrounded && velocity.y < 0)
+        {
             velocity.y = -2f;
         }
 
@@ -50,7 +52,8 @@ public class TouchPlayerMovement : MonoBehaviour {
     }
 
     void GetTouchInput() {
-        if (Input.touchCount > 0) {
+        if (Input.touchCount > 0)
+        {
             Debug.Log("Currently " + Input.touchCount + " fingers are touching");
         }
     }

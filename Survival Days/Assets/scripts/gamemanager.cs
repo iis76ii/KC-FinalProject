@@ -22,26 +22,33 @@ public class GameManager : MonoBehaviour {
     public Animator blackScreenAnimator;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start() 
+    {
+
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         //healthNum.text = "Health " + player.health.ToString();
-        if (enemiesAlive == 0) {
+        if (enemiesAlive == 0) 
+        {
             round++;
             NextWave(round);
             roundNum.text = "Round: " + round.ToString();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
             Pause();
 
         }
     }
 
-    public void NextWave(int round) {
-        for (int i = 0; i < round; i++) {
+    public void NextWave(int round) 
+    {
+        for (int i = 0; i < round; i++) 
+        {
             GameObject spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
             GameObject enemySpawned = Instantiate(enemyPrefab, spawnPoint.transform.position, Quaternion.identity);
@@ -50,27 +57,31 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void EndGame() {
+    public void EndGame()
+    {
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
         endScreen.SetActive(true);
         roundsSurvived.text = round.ToString();
     }
 
-    public void ReplayGame() {
+    public void ReplayGame() 
+    {
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
         round = 0;
     }
 
-    public void MainMenu() {
+    public void MainMenu() 
+    {
         Time.timeScale = 1; 
         AudioListener.volume = 1;
         blackScreenAnimator.SetTrigger("FadeIn");
         Invoke("LoadMainMenuScene", .4f);
     }
 
-    void LoadMainMenuScene() {
+    void LoadMainMenuScene()
+    {
         SceneManager.LoadScene(0);
     }
 
@@ -81,7 +92,8 @@ public class GameManager : MonoBehaviour {
         AudioListener.volume = 0;
     }
 
-    public void UnPause() {
+    public void UnPause()
+    {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
